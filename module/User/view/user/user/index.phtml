@@ -1,0 +1,79 @@
+<?php
+$form = $this->loginForm;
+
+$form->setAttribute('action', $this->url('user', array('action' => 'login')));
+
+$form->prepare();
+
+echo $this->form()->openTag($form);
+
+echo $this->formElement($form->get('loginCsrf'));
+
+$errorMessage = $this->errorList;
+?>
+
+<h2 class="center-b">Login</h2>
+
+<?php
+if (isset($errorMessage) && count($errorMessage)) :
+    ?>
+    <div class="server-error padding-bottom_30 center-b">
+        <ul>
+            <?php
+            if (isset($errorMessage)) {
+                ?>
+                <?php foreach ($errorMessage as $type => $msg) : ?>
+                    <?php foreach ($msg as $error_type => $error_msg) : ?>
+                        <li><span class="<?php echo $error_type; ?>"><?php echo $error_msg; ?></span></li>
+                    <?php endforeach; ?>
+                <?php endforeach; ?>
+            <?php } ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
+<table align="center" cellpadding="5" >
+    <tr>
+        <td>
+            <?php
+            echo $this->formlabel($form->get('email'));
+            ?>
+        </td>
+        <td>
+            <?php
+            echo $this->formelement($form->get('email'));
+            ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <?php
+            echo $this->formlabel($form->get('password'));
+            ?>
+        </td>
+        <td>
+            <?php
+            echo $this->formelement($form->get('password'));
+            ?>
+        </td>
+    </tr>
+
+    <tr>
+        <td>&nbsp;</td>
+        <td>
+            <?php
+            echo $this->formSubmit($form->get('submit'));
+            ?>
+        </td>
+    </tr>
+</table>
+<?php
+echo $this->form()->closeTag();
+?>
+
+<p class="center-b">
+    Not registered? <a href=<?php echo $this->serverUrl('/user/register') ?>> Create an account</a>
+</p>
+<p class="center-b">
+    <a href=<?php echo $this->serverUrl('/user/forgotPassword') ?>>   Forgot Password? </a>
+</p>

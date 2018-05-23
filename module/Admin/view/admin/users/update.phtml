@@ -1,0 +1,80 @@
+<div class="container"> 
+
+    <h2>Update User</h2>
+
+    <?php
+    $form = $this->userForm;
+
+    $form->setAttribute('action', $this->url('users', array('action' => 'update')));
+
+    $form->prepare();
+
+    echo $this->form()->openTag($form);
+
+    $errorMessage = $this->flashMessenger()->getMessages();
+
+    if (isset($errorMessage) && count($errorMessage)) :
+        $errorMessage = $errorMessage[0];
+        ?>
+        <div class="server-error padding-bottom_30 center-b">
+            <ul>
+                <?php
+                if (isset($errorMessage)) {
+                    ?>
+                    <?php foreach ($errorMessage as $type => $msg) : ?>
+                        <?php foreach ($msg as $error_type => $error_msg) : ?>
+                            <li><span class="<?php echo $error_type; ?>"><?php echo $error_msg; ?></span></li>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                <?php } ?>
+            </ul>
+        </div>
+    <?php endif;
+    ?>
+    <?php echo $this->formHidden($form->get('id')->setValue($this->user->id)); ?>
+
+    <div class="form-group">
+        <label>
+            <?php
+            echo $this->formlabel($form->get('first_name'));
+            ?>
+        </label>
+        <?php
+        echo $this->formelement($form->get('first_name')->setValue(@$this->user->first_name));
+        ?>
+    </div>
+
+
+    <div class="form-group">
+        <label>
+            <?php
+            echo $this->formlabel($form->get('last_name'));
+            ?>
+        </label>
+        <?php
+        echo $this->formelement($form->get('last_name')->setValue(@$this->user->last_name));
+        ?>
+    </div>
+
+
+    <div class="form-group">
+        <label>
+            <?php
+            echo $this->formlabel($form->get('email'));
+            ?>
+        </label>
+        <?php
+        echo $this->formelement($form->get('email')->setValue(@$this->user->email));
+        ?>
+    </div>
+
+    <?php
+    echo $this->formSubmit($form->get('submit'));
+    ?>
+
+
+    <?php
+    echo $this->form()->closeTag();
+    ?>
+
+</div>

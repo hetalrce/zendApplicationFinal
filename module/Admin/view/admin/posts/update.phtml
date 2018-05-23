@@ -1,0 +1,64 @@
+<div class="container"> 
+    <h2>Update Post</h2>
+    <?php
+    $form = $this->postForm;
+
+    $form->setAttribute('action', $this->url('posts', array('action' => 'update')));
+
+    $form->prepare();
+
+    echo $this->form()->openTag($form);
+
+    $errorMessage = $this->errorList;
+
+    if (isset($errorMessage) && count($errorMessage)) :
+        ?>
+        <div class="server-error padding-bottom_30 center-b">
+            <ul>
+                <?php
+                if (isset($errorMessage)) {
+                    ?>
+                    <?php foreach ($errorMessage as $type => $msg) : ?>
+                        <?php foreach ($msg as $error_type => $error_msg) : ?>
+                            <li><span class="<?php echo $error_type; ?>"><?php echo $error_msg; ?></span></li>
+                        <?php endforeach; ?>
+                    <?php endforeach; ?>
+                <?php } ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+    <?php echo $this->formHidden($form->get('id')->setValue($this->post->id)); ?>
+
+
+
+
+    <div class="form-group">
+        <label>
+            <?php
+            echo $this->formlabel($form->get('title'));
+            ?>
+        </label>
+        <?php
+        echo $this->formelement($form->get('title')->setValue($this->post->title));
+        ?>
+    </div>
+
+    <div class="form-group">
+        <label>
+            <?php
+            echo $this->formlabel($form->get('content'));
+            ?>
+        </label>
+        <?php
+        echo $this->formelement($form->get('content')->setValue($this->post->content));
+        ?>
+    </div>
+
+    <?php
+    echo $this->formSubmit($form->get('submit'));
+    ?>
+
+    <?php
+    echo $this->form()->closeTag();
+    ?>
+</div>
