@@ -69,6 +69,20 @@ class UsersController extends AbstractActionController
     }
 
     /**
+     * Users Action
+     *
+     * @package Admin Users
+     * @access Public
+     * @return Object ViewModel
+     */
+    public function indexAction()
+    {
+        $this->layout("layout/page_layout");
+        $users = $this->_em->getRepository('Admin\Entity\Users')->findBy(['role' => 2,]);
+        return ['users' => $users,];
+    }
+
+    /**
      * add User Action
      *
      * @package Post
@@ -146,20 +160,6 @@ class UsersController extends AbstractActionController
         }
 
         return ['userForm' => $this->_userForm, 'user' => $user, 'id' => $id,];
-    }
-
-    /**
-     * Users Action
-     *
-     * @package Admin Users
-     * @access Public
-     * @return Object ViewModel
-     */
-    public function indexAction()
-    {
-        $this->layout("layout/page_layout");
-        $users = $this->_em->getRepository('Admin\Entity\Users')->findBy(['role' => 2,]);
-        return ['users' => $users,];
     }
 
     /**
