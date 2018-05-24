@@ -84,8 +84,8 @@ class PostController extends AbstractActionController
         $this->layout("layout/header");
         $userId = $this->_session->offsetGet('userId');
         $post = $this->_em->getRepository('User\Entity\Post')->findBy(
-                array('user_id' => $userId,));
-        return array('post' => $post,);
+                ['user_id' => $userId,]);
+        return ['post' => $post,];
     }
 
     /**
@@ -116,7 +116,7 @@ class PostController extends AbstractActionController
                 $errorList = $this->_postForm->getMessages();
             }
         }
-        return array('postForm' => $this->_postForm, 'errorList' => $errorList,);
+        return ['postForm' => $this->_postForm, 'errorList' => $errorList,];
     }
 
     /**
@@ -132,11 +132,11 @@ class PostController extends AbstractActionController
         $id = (int) $this->params()->fromRoute('id', 0);
         try {
             $post = $this->_em->getRepository('User\Entity\Post')->findOneBy(
-                    array('id' => $id));
+                    ['id' => $id]);
         } catch (\Exception $ex) {
-            return $this->redirect()->toRoute('post', array(
+            return $this->redirect()->toRoute('post', [
                         'action' => 'index',
-            ));
+            ]);
         }
         $this->_postForm->get('submit')->setAttribute('value', 'Update');
         $request = $this->getRequest();
@@ -155,7 +155,7 @@ class PostController extends AbstractActionController
                 $errorList = $this->_postForm->getMessages();
             }
         }
-        return array('postForm' => $this->_postForm, 'post' => $post, 'id' => $id, 'errorList' => $errorList,);
+        return ['postForm' => $this->_postForm, 'post' => $post, 'id' => $id, 'errorList' => $errorList,];
     }
 
     /**

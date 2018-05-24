@@ -83,7 +83,7 @@ class PostsController extends AbstractActionController
     {
         $this->layout("layout/page_layout");
         $posts = $this->_em->getRepository('Admin\Entity\Posts')->findAll();
-        return array('post' => $posts,);
+        return ['post' => $posts,];
     }
 
     /**
@@ -113,7 +113,7 @@ class PostsController extends AbstractActionController
                 $errorList = $this->_postForm->getMessages();
             }
         }
-        return array('postForm' => $this->_postForm, 'errorList' => $errorList,);
+        return ['postForm' => $this->_postForm, 'errorList' => $errorList,];
     }
 
     /**
@@ -129,11 +129,11 @@ class PostsController extends AbstractActionController
         $id = (int) $this->params()->fromRoute('id', 0);
         try {
             $post = $this->_em->getRepository('Admin\Entity\Posts')->findOneBy(
-                    array('id' => $id,));
+                    ['id' => $id,]);
         } catch (\Exception $ex) {
-            return $this->redirect()->toRoute('posts', array(
+            return $this->redirect()->toRoute('posts', [
                         'action' => 'index',
-            ));
+            ]);
         }
         $this->_postForm->get('submit')->setAttribute('value', 'Update');
         $request = $this->getRequest();
@@ -151,7 +151,7 @@ class PostsController extends AbstractActionController
                 $errorList = $this->_postForm->getMessages();
             }
         }
-        return array('postForm' => $this->_postForm, 'post' => $post, 'id' => $id, 'errorList' => $errorList,);
+        return ['postForm' => $this->_postForm, 'post' => $post, 'id' => $id, 'errorList' => $errorList,];
     }
 
     /**

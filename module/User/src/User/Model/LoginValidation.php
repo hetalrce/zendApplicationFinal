@@ -63,62 +63,62 @@ class LoginValidation implements InputFilterAwareInterface
 
 
 
-            $inputFilter->add($factory->createInput(array(
+            $inputFilter->add($factory->createInput([
                         'name' => 'email',
                         'required' => true,
-                        'validators' => array(
-                            array(
+                        'validators' => [
+                            [
                                 'name' => 'NotEmpty',
-                                'options' => array(
-                                    'messages' => array(
+                                'options' => [
+                                    'messages' => [
                                         $isEmpty => 'Email can not be empty.',
-                                    ),
-                                ),
+                                    ],
+                                ],
                                 'break_chain_on_failure' => true
-                            ),
-                            array(
+                            ],
+                            [
                                 'name' => 'EmailAddress',
-                                'options' => array(
-                                    'messages' => array(
+                                'options' => [
+                                    'messages' => [
                                         $invalidEmail => 'Enter Valid Email Address.',
-                                    ),
-                                ),
+                                    ],
+                                ],
                                 'break_chain_on_failure' => true
-                            ),
-                        ),
-                        'filters' => array(
-                            array(
+                            ],
+                        ],
+                        'filters' => [
+                            [
                                 'name' => 'StripTags',
-                            ),
-                            array(
+                            ],
+                            [
                                 'name' => 'StringTrim',
-                            ),
-                        ),
-            )));
+                            ],
+                        ],
+            ]));
 
-            $inputFilter->add($factory->createInput(array(
+            $inputFilter->add($factory->createInput([
                         'name' => 'password',
                         'required' => true,
-                        'validators' => array(
-                            array(
+                        'validators' => [
+                            [
                                 'name' => 'NotEmpty',
-                                'options' => array(
-                                    'messages' => array(
+                                'options' => [
+                                    'messages' => [
                                         $isEmpty => 'Password can not be empty.',
-                                    ),
-                                ),
+                                    ],
+                                ],
                                 'break_chain_on_failure' => true,
-                            ),
-                        ),
-                        'filters' => array(
-                            array(
+                            ],
+                        ],
+                        'filters' => [
+                            [
                                 'name' => 'StripTags',
-                            ),
-                            array(
+                            ],
+                            [
                                 'name' => 'StringTrim',
-                            ),
-                        ),
-            )));
+                            ],
+                        ],
+            ]));
 
 
             $this->_inputFilter = $inputFilter;

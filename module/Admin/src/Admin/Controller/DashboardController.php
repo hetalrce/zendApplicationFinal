@@ -46,10 +46,10 @@ class DashboardController extends AbstractActionController
     public function indexAction()
     {
         $this->layout("layout/page_layout");
-        $userDataCount = $this->_em->getRepository('Admin\Entity\Users')->findBy(array('role' => 2));
+        $userDataCount = $this->_em->getRepository('Admin\Entity\Users')->findBy(['role' => 2]);
         $postDataCount = $this->_em->getRepository('Admin\Entity\Posts')->findAll();
 
-        return array('usersCount' => count($userDataCount), 'postsCount' => count($postDataCount),);
+        return ['usersCount' => count($userDataCount), 'postsCount' => count($postDataCount),];
     }
 
     /**

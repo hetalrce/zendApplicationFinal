@@ -72,7 +72,7 @@ class UserController extends AbstractActionController
             if ($this->_loginForm->isValid()) {
                 $data = $this->_loginForm->getData();
                 $userDetails = $this->_em->getRepository('User\Entity\User')->findOneBy(
-                        array('email' => $data['email'], 'password' => md5($data['password']),)
+                        ['email' => $data['email'], 'password' => md5($data['password']),]
                 );
                 if (!empty($userDetails)) {
 
@@ -97,7 +97,7 @@ class UserController extends AbstractActionController
             }
         }
 
-        return array('loginForm' => $this->_loginForm, 'errorList' => $errorList);
+        return ['loginForm' => $this->_loginForm, 'errorList' => $errorList];
     }
 
     /**

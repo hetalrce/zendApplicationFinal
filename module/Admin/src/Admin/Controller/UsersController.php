@@ -97,7 +97,7 @@ class UsersController extends AbstractActionController
                 $errorList = $this->_userForm->getMessages();
             }
         }
-        return array('userForm' => $this->_userForm, 'errorList' => $errorList,);
+        return ['userForm' => $this->_userForm, 'errorList' => $errorList,];
     }
 
     /**
@@ -115,11 +115,11 @@ class UsersController extends AbstractActionController
 
         try {
             $user = $this->_em->getRepository('Admin\Entity\Users')->findOneBy(
-                    array('id' => $id));
+                    ['id' => $id,]);
         } catch (\Exception $ex) {
-            return $this->redirect()->toRoute('users', array(
+            return $this->redirect()->toRoute('users', [
                         'action' => 'index',
-            ));
+            ]);
         }
 
         $this->_userForm->get('submit')->setAttribute('value', 'Update');
@@ -145,7 +145,7 @@ class UsersController extends AbstractActionController
             }
         }
 
-        return array('userForm' => $this->_userForm, 'user' => $user, 'id' => $id,);
+        return ['userForm' => $this->_userForm, 'user' => $user, 'id' => $id,];
     }
 
     /**
@@ -158,8 +158,8 @@ class UsersController extends AbstractActionController
     public function indexAction()
     {
         $this->layout("layout/page_layout");
-        $users = $this->_em->getRepository('Admin\Entity\Users')->findBy(array('role' => 2));
-        return array('users' => $users);
+        $users = $this->_em->getRepository('Admin\Entity\Users')->findBy(['role' => 2,]);
+        return ['users' => $users,];
     }
 
     /**

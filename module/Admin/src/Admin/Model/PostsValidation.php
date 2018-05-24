@@ -63,52 +63,52 @@ class PostsValidation implements InputFilterAwareInterface
 
 
 
-            $inputFilter->add($factory->createInput(array(
+            $inputFilter->add($factory->createInput([
                         'name' => 'title',
                         'required' => true,
-                        'validators' => array(
-                            array(
+                        'validators' => [
+                            [
                                 'name' => 'NotEmpty',
-                                'options' => array(
-                                    'messages' => array(
+                                'options' => [
+                                    'messages' => [
                                         $isEmpty => 'Title can not be empty.',
-                                    )
-                                ),
+                                    ]
+                                ],
                                 'break_chain_on_failure' => true,
-                            )
-                        ),
-                        'filters' => array(
-                            array(
+                            ]
+                        ],
+                        'filters' => [
+                            [
                                 'name' => 'StripTags',
-                            ),
-                            array(
+                            ],
+                            [
                                 'name' => 'StringTrim',
-                            ),
-                        )
-            )));
-            $inputFilter->add($factory->createInput(array(
+                            ],
+                        ]
+            ]));
+            $inputFilter->add($factory->createInput([
                         'name' => 'content',
                         'required' => true,
-                        'validators' => array(
-                            array(
+                        'validators' => [
+                            [
                                 'name' => 'NotEmpty',
-                                'options' => array(
-                                    'messages' => array(
+                                'options' => [
+                                    'messages' => [
                                         $isEmpty => 'Content can not be empty.',
-                                    )
-                                ),
+                                    ]
+                                ],
                                 'break_chain_on_failure' => true,
-                            )
-                        ),
-                        'filters' => array(
-                            array(
+                            ]
+                        ],
+                        'filters' => [
+                            [
                                 'name' => 'StripTags',
-                            ),
-                            array(
+                            ],
+                            [
                                 'name' => 'StringTrim',
-                            ),
-                        )
-            )));
+                            ],
+                        ]
+            ]));
 
 
 

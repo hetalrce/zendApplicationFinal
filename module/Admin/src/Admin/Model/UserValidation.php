@@ -63,140 +63,140 @@ class UserValidation implements InputFilterAwareInterface
 
 
 
-            $inputFilter->add($factory->createInput(array(
+            $inputFilter->add($factory->createInput([
                         'name' => 'first_name',
                         'required' => true,
-                        'validators' => array(
-                            array(
+                        'validators' => [
+                            [
                                 'name' => 'NotEmpty',
-                                'options' => array(
-                                    'messages' => array(
+                                'options' => [
+                                    'messages' => [
                                         $isEmpty => 'First Name can not be empty.',
-                                    )
-                                ),
+                                    ]
+                                ],
                                 'break_chain_on_failure' => true,
-                            )
-                        ),
-                        'filters' => array(
-                            array(
+                            ]
+                        ],
+                        'filters' => [
+                            [
                                 'name' => 'StripTags',
-                            ),
-                            array(
+                            ],
+                            [
                                 'name' => 'StringTrim',
-                            ),
-                        )
-            )));
+                            ],
+                        ]
+            ]));
 
-            $inputFilter->add($factory->createInput(array(
+            $inputFilter->add($factory->createInput([
                         'name' => 'last_name',
                         'required' => true,
-                        'validators' => array(
-                            array(
+                        'validators' => [
+                            [
                                 'name' => 'NotEmpty',
-                                'options' => array(
-                                    'messages' => array(
+                                'options' => [
+                                    'messages' => [
                                         $isEmpty => 'Last Name can not be empty.',
-                                    )
-                                ),
+                                    ]
+                                ],
                                 'break_chain_on_failure' => true,
-                            )
-                        ),
-                        'filters' => array(
-                            array(
+                            ]
+                        ],
+                        'filters' => [
+                            [
                                 'name' => 'StripTags',
-                            ),
-                            array(
+                            ],
+                            [
                                 'name' => 'StringTrim',
-                            ),
-                        )
-            )));
+                            ],
+                        ]
+            ]));
 
-            $inputFilter->add($factory->createInput(array(
+            $inputFilter->add($factory->createInput([
                         'name' => 'email',
                         'required' => true,
-                        'validators' => array(
-                            array(
+                        'validators' => [
+                            [
                                 'name' => 'NotEmpty',
-                                'options' => array(
-                                    'messages' => array(
+                                'options' => [
+                                    'messages' => [
                                         $isEmpty => 'Email can not be empty.',
-                                    )
-                                ),
+                                    ],
+                                ],
                                 'break_chain_on_failure' => true,
-                            ),
-                            array(
+                            ],
+                            [
                                 'name' => 'EmailAddress',
-                                'options' => array(
-                                    'messages' => array(
+                                'options' => [
+                                    'messages' => [
                                         $invalidEmail => 'Enter Valid Email Address.'
-                                    )
-                                ),
+                                    ],
+                                ],
                                 'break_chain_on_failure' => true
-                            ),
-                        ),
-                        'filters' => array(
-                            array(
+                            ],
+                        ],
+                        'filters' => [
+                            [
                                 'name' => 'StripTags',
-                            ),
-                            array(
+                            ],
+                            [
                                 'name' => 'StringTrim',
-                            ),
-                        )
-            )));
-            $inputFilter->add($factory->createInput(array(
+                            ],
+                        ]
+            ]));
+            $inputFilter->add($factory->createInput([
                         'name' => 'password',
                         'required' => true,
-                        'validators' => array(
-                            array(
+                        'validators' => [
+                            [
                                 'name' => 'NotEmpty',
-                                'options' => array(
-                                    'messages' => array(
+                                'options' => [
+                                    'messages' => [
                                         $isEmpty => 'Password can not be empty.',
-                                    )
-                                ),
+                                    ],
+                                ],
                                 'break_chain_on_failure' => true,
-                            )
-                        ),
-                        'filters' => array(
-                            array(
+                            ]
+                        ],
+                        'filters' => [
+                            [
                                 'name' => 'StripTags',
-                            ),
-                            array(
+                            ],
+                            [
                                 'name' => 'StringTrim',
-                            ),
-                        )
-            )));
-            $inputFilter->add($factory->createInput(array(
+                            ],
+                        ]
+            ]));
+            $inputFilter->add($factory->createInput([
                         'name' => 'confirmpassword',
                         'required' => true,
-                        'validators' => array(
-                            array(
+                        'validators' => [
+                            [
                                 'name' => 'NotEmpty',
-                                'options' => array(
-                                    'messages' => array(
+                                'options' => [
+                                    'messages' => [
                                         $isEmpty => 'Confirm password can not be empty.',
-                                    )
-                                ),
+                                    ]
+                                ],
                                 'break_chain_on_failure' => true,
-                            ),
-                            array(
+                            ],
+                            [
                                 'name' => 'Identical',
-                                'options' => array(
+                                'options' => [
                                     'token' => 'password',
                                     'message' => 'Password and confirm password must be same.',
-                                ),
+                                ],
                                 'break_chain_on_failure' => true
-                            ),
-                        ),
-                        'filters' => array(
-                            array(
+                            ],
+                        ],
+                        'filters' => [
+                            [
                                 'name' => 'StripTags',
-                            ),
-                            array(
+                            ],
+                            [
                                 'name' => 'StringTrim',
-                            ),
-                        )
-            )));
+                            ],
+                        ]
+            ]));
 
 
 

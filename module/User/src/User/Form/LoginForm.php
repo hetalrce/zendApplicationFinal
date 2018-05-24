@@ -12,62 +12,62 @@ class LoginForm extends Form
         parent::__construct('login');
         // Setting post method for this form
         $this->setAttribute("method", "post");
-        $this->add(array(
+        $this->add([
             'name' => 'email',
-            'attributes' => array(
+            'attributes' => [
                 'id' => 'email',
                 'type' => 'text',
                 'class' => 'input-txt',
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Email Id',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'password',
-            'attributes' => array(
+            'attributes' => [
                 'id' => 'password',
                 'type' => 'password',
                 'class' => 'input-txt',
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Password',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'rememberMe',
-            'attributes' => array(
+            'attributes' => [
                 'id' => 'rememberMe',
                 'value' => 1,
                 'type' => 'Checkbox',
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Remember me on this computer',
-            ),
-        ));
+            ],
+        ]);
 
 
-        $this->add(array(
+        $this->add([
             'name' => 'submit',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'submit',
                 'value' => 'Sign in',
                 'id' => 'submitbutton',
                 'class' => 'btn',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'type' => 'Zend\Form\Element\Csrf',
             'name' => 'loginCsrf',
-            'options' => array(
-                'csrf_options' => array(
+            'options' => [
+                'csrf_options' => [
                     'timeout' => 3600,
-                ),
-            ),
-        ));
+                ],
+            ],
+        ]);
     }
 
 }

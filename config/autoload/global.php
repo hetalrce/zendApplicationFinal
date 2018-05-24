@@ -11,19 +11,19 @@
  * control, so do not include passwords or other sensitive information in this
  * file.
  */
-return array(
-    'db' => array(
+return [
+    'db' => [
         'driver' => 'Pdo',
         'dsn' => 'mysql:dbname=zendapplicationfinal;host=localhost',
         'username' => 'root',
         'password' => 'root',
-        'driver_options' => array(
+        'driver_options' => [
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\'',
-        ),
-    ),
-    'service_manager' => array(
-        'factories' => array(
+        ],
+    ],
+    'service_manager' => [
+        'factories' => [
             'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
-        ),
-    ),
-);
+        ],
+    ],
+];

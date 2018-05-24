@@ -2,86 +2,93 @@
 
 namespace Admin;
 
-return array(
-    'router' => array(
-        'routes' => array(
-            'admin' => array(
+Use Admin\Controller\Dashboard;
+Use Admin\Controller\Posts;
+use Admin\Controller\Users;
+use Admin\Factory\Controller\PostsControllerFactory;
+use Admin\Factory\Controller\UsersControllerFactory;
+use Admin\Factory\Controller\DashboardControllerFactory;
+
+return [
+    'router' => [
+        'routes' => [
+            'admin' => [
                 'type' => 'Literal',
-                'options' => array(
+                'options' => [
                     'route' => '/admin',
-                    'defaults' => array(
-                        'controller' => 'Admin\Controller\Dashboard',
+                    'defaults' => [
+                        'controller' => Dashboard::class,
                         'action' => 'index',
-                    ),
-                ),
+                    ],
+                ],
                 'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
+                'child_routes' => [
+                    'default' => [
                         'type' => 'Segment',
-                        'options' => array(
+                        'options' => [
                             'route' => '/[:action]',
-                            'constraints' => array(
+                            'constraints' => [
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-            'posts' => array(
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'posts' => [
                 'type' => 'segment',
-                'options' => array(
+                'options' => [
                     'route' => '/admin/posts[/:action][/:id]',
-                    'constraints' => array(
+                    'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'Admin\Controller\Posts',
+                    ],
+                    'defaults' => [
+                        'controller' => Posts::class,
                         'action' => 'index',
-                    ),
-                ),
-            ),
-            'users' => array(
+                    ],
+                ],
+            ],
+            'users' => [
                 'type' => 'segment',
-                'options' => array(
+                'options' => [
                     'route' => '/admin/users[/:action][/:id]',
-                    'constraints' => array(
+                    'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'Admin\Controller\Users',
+                    ],
+                    'defaults' => [
+                        'controller' => Users::class,
                         'action' => 'index',
-                    ),
-                ),
-            ),
-        ),
-    ),
-    'controllers' => array(
-        'factories' => array(
-            'Admin\Controller\Posts' => 'Admin\Factory\Controller\PostsControllerFactory',
-            'Admin\Controller\Users' => 'Admin\Factory\Controller\UsersControllerFactory',
-            'Admin\Controller\Dashboard' => 'Admin\Factory\Controller\DashboardControllerFactory',
-        ),
-    ),
-    'view_manager' => array(
-        'template_path_stack' => array(
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'controllers' => [
+        'factories' => [
+            'Admin\Controller\Posts' => PostsControllerFactory::class,
+            'Admin\Controller\Users' => UsersControllerFactory::class,
+            'Admin\Controller\Dashboard' => DashboardControllerFactory::class,
+        ],
+    ],
+    'view_manager' => [
+        'template_path_stack' => [
             __DIR__ . '/../view',
-        ),
-    ),
+        ],
+    ],
     // Doctrine config
-    'doctrine' => array(
-        'driver' => array(
-            __NAMESPACE__ . '_driver' => array(
+    'doctrine' => [
+        'driver' => [
+            __NAMESPACE__ . '_driver' => [
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity'),
-            ),
-            'orm_default' => array(
-                'drivers' => array(
+                'paths' => [__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity'],
+            ],
+            'orm_default' => [
+                'drivers' => [
                     __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver',
-                ),
-            ),
-        ),
-    )
-);
+                ],
+            ],
+        ],
+    ]
+];

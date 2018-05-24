@@ -2,81 +2,86 @@
 
 namespace User;
 
-return array(
-    'router' => array(
-        'routes' => array(
-            'home' => array(
+use User\Controller\User;
+use User\Controller\Post;
+use User\Factory\Controller\UserControllerFactory;
+use User\Factory\Controller\PostControllerFactory;
+
+return [
+    'router' => [
+        'routes' => [
+            'home' => [
                 'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
+                'options' => [
                     'route' => '/',
-                    'defaults' => array(
-                        'controller' => 'User\Controller\User',
+                    'defaults' => [
+                        'controller' => User::class,
                         'action' => 'index',
-                    ),
-                ),
-            ),
-            'user' => array(
+                    ],
+                ],
+            ],
+            'user' => [
                 'type' => 'Literal',
-                'options' => array(
+                'options' => [
                     'route' => '/user',
-                    'defaults' => array(
-                        'controller' => 'User\Controller\User',
+                    'defaults' => [
+                        'controller' => User::class,
                         'action' => 'index',
-                    ),
-                ),
+                    ],
+                ],
                 'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
+                'child_routes' => [
+                    'default' => [
                         'type' => 'Segment',
-                        'options' => array(
+                        'options' => [
                             'route' => '/[:action]',
-                            'constraints' => array(
+                            'constraints' => [
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                        ),
-                    ),
-                ),
-            ),
-            'post' => array(
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'post' => [
                 'type' => 'segment',
-                'options' => array(
+                'options' => [
                     'route' => '/post[/:action][/:id]',
-                    'constraints' => array(
+                    'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id' => '[0-9]+',
-                    ),
-                    'defaults' => array(
-                        'controller' => 'User\Controller\Post',
+                    ],
+                    'defaults' => [
+                        'controller' => Post::class,
                         'action' => 'index',
-                    ),
-                ),
-            ),
-        ),
-    ),
-    'controllers' => array(
-        'factories' => array(
-            'User\Controller\Post' => 'User\Factory\Controller\PostControllerFactory',
-            'User\Controller\User' => 'User\Factory\Controller\UserControllerFactory',
-        ),
-    ),
-    'view_manager' => array(
-        'template_path_stack' => array(
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'controllers' => [
+        'factories' => [
+            'User\Controller\Post' => PostControllerFactory::class,
+            'User\Controller\User' => UserControllerFactory::class,
+        ],
+    ],
+    'view_manager' => [
+        'template_path_stack' => [
             __DIR__ . '/../view',
-        ),
-    ),
+        ],
+    ],
     // Doctrine config
-    'doctrine' => array(
-        'driver' => array(
-            __NAMESPACE__ . '_driver' => array(
+    'doctrine' => [
+        'driver' => [
+            __NAMESPACE__ . '_driver' => [
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity'),
-            ),
-            'orm_default' => array(
-                'drivers' => array(
+                'paths' => [__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity'],
+            ],
+            'orm_default' => [
+                'drivers' => [
                     __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver',
-                ),
-            ),
-        ),
-    ),
-);
+                ],
+            ],
+        ],
+    ],
+];

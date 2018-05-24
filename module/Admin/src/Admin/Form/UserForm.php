@@ -15,80 +15,80 @@ class UserForm extends Form
         $this->setAttribute("method", "post");
 
         // Adding Hidden element to the form for ID
-        $this->add(array(
+        $this->add([
             "name" => "id",
-            "attributes" => array(
+            "attributes" => [
                 "type" => "hidden",
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'first_name',
-            'attributes' => array(
+            'attributes' => [
                 'id' => 'first_name',
                 'type' => 'text',
                 'class' => 'input-txt form-control',
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'First Name',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'last_name',
-            'attributes' => array(
+            'attributes' => [
                 'id' => 'last_name',
                 'type' => 'text',
                 'class' => 'input-txt form-control',
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Last Name',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'email',
-            'attributes' => array(
+            'attributes' => [
                 'id' => 'email',
                 'type' => 'text',
                 'class' => 'input-txt form-control',
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Email',
-            ),
-        ));
-        $this->add(array(
+            ],
+        ]);
+        $this->add([
             'name' => 'password',
-            'attributes' => array(
+            'attributes' => [
                 'id' => 'password',
                 'type' => 'password',
                 'class' => 'input-txt form-control',
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Password',
-            ),
-        ));
-        $this->add(array(
+            ],
+        ]);
+        $this->add([
             'name' => 'confirmpassword',
-            'attributes' => array(
+            'attributes' => [
                 'id' => 'confirmpassword',
                 'type' => 'password',
                 'class' => 'input-txt form-control',
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Confirm Password',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'submit',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'submit',
                 'value' => 'Submit',
                 'id' => 'submitbutton',
                 'class' => 'btn btn-default',
-            ),
-        ));
+            ],
+        ]);
     }
 
 }

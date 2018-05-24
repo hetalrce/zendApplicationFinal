@@ -32,20 +32,20 @@ class Module
     public function getAutoloaderConfig()
     {
 
-        return array(
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
+        return [
+            'Zend\Loader\StandardAutoloader' => [
+                'namespaces' => [
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     // Automatically invoked by service manager
     public function getServiceConfig()
     {
-        return array(
-            'factories' => array(
+        return [
+            'factories' => [
                 'User\Model\UserTable' => function($sm)
                 {
                     $tableGateway = $sm->get('UserTableGateway');
@@ -64,8 +64,8 @@ class Module
                     $resultSetPrototype->setArrayObjectPrototype(new User());
                     return new TableGateway('users', $dbAdapter, null, $resultSetPrototype);
                 },
-            )
-        );
+            ]
+        ];
     }
 
 }

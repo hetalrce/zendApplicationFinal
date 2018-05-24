@@ -43,7 +43,7 @@ class UserTable extends AbstractTableGateway
 
     public function getUser($email, $password)
     {
-        $resultSet = $this->tableGateway->select(array('email' => $email, 'password' => $password,));
+        $resultSet = $this->tableGateway->select(['email' => $email, 'password' => $password,]);
         if (!empty($resultSet->current())) {
             return $resultSet->current();
         }
@@ -60,12 +60,12 @@ class UserTable extends AbstractTableGateway
             $sql = new Sql($this->getAdapter());
             $select = $sql->select()
                     ->from($this->table)
-                    ->columns(array(
-                        'id'
-                    ))
-                    ->where(array(
-                'email' => $emailData['email']
-            ));
+                    ->columns([
+                        'id',
+                    ])
+                    ->where([
+                'email' => $emailData['email'],
+            ]);
             //  $sqlstring = $sql->buildSqlString($select);
             //  echo $sqlstring;
 
@@ -159,9 +159,9 @@ class UserTable extends AbstractTableGateway
 
             $update->set($data);
 
-            $update->where(array(
-                'id' => $userPasswordData['userId']
-            ));
+            $update->where([
+                'id' => $userPasswordData['userId'],
+            ]);
             $statement = $sql->prepareStatementForSqlObject($update);
             $result = $statement->execute();
             // /////Password reset Successfully ///////////

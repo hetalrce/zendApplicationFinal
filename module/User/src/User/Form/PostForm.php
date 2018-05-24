@@ -15,46 +15,46 @@ class PostForm extends Form
         $this->setAttribute("method", "post");
 
         // Adding Hidden element to the form for ID
-        $this->add(array(
+        $this->add([
             "name" => "id",
-            "attributes" => array(
+            "attributes" => [
                 "type" => "hidden",
-            ),
-        ));
-        $this->add(array(
+            ],
+        ]);
+        $this->add([
             'name' => 'title',
-            'attributes' => array(
+            'attributes' => [
                 'id' => 'title',
                 'type' => 'text',
                 'class' => 'input-txt',
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Title',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'content',
-            'attributes' => array(
+            'attributes' => [
                 'id' => 'content',
                 'type' => 'textarea',
                 'class' => 'input-txt',
                 'rows' => 4,
-            ),
-            'options' => array(
+            ],
+            'options' => [
                 'label' => 'Content',
-            ),
-        ));
+            ],
+        ]);
 
-        $this->add(array(
+        $this->add([
             'name' => 'submit',
-            'attributes' => array(
+            'attributes' => [
                 'type' => 'submit',
                 'value' => 'Submit',
                 'id' => 'submitbutton',
                 'class' => 'btn',
-            ),
-        ));
+            ],
+        ]);
     }
 
 }
