@@ -5,7 +5,8 @@ namespace Admin\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class UsersController extends AbstractActionController {
+class UsersController extends AbstractActionController
+{
 
     /**
      *  @var DoctrineORMEntityManager
@@ -45,7 +46,8 @@ class UsersController extends AbstractActionController {
      * @param $sessionConfig Session Data Class
      * @return Object
      */
-    public function __construct($serviceLocator = null, $sessionConfig = null, $userForm = null, $userFormValidation = null, $hydrator = null, $reflaction_object = null) {
+    public function __construct($serviceLocator = null, $sessionConfig = null, $userForm = null, $userFormValidation = null, $hydrator = null, $reflaction_object = null)
+    {
         if (!is_null($serviceLocator)) {
             $this->_em = $serviceLocator;
         }
@@ -73,7 +75,8 @@ class UsersController extends AbstractActionController {
      * @access Public
      * @return Object ViewModel
      */
-    public function addAction() {
+    public function addAction()
+    {
         $this->layout("layout/page_layout");
         $request = $this->getRequest();
         $errorList = [];
@@ -94,7 +97,7 @@ class UsersController extends AbstractActionController {
                 $errorList = $this->_userForm->getMessages();
             }
         }
-        return array('userForm' => $this->_userForm, 'errorList' => $errorList);
+        return array('userForm' => $this->_userForm, 'errorList' => $errorList,);
     }
 
     /**
@@ -104,7 +107,8 @@ class UsersController extends AbstractActionController {
      * @access Public
      * @return Object ViewModel
      */
-    public function updateAction() {
+    public function updateAction()
+    {
         $this->layout("layout/page_layout");
 
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -151,7 +155,8 @@ class UsersController extends AbstractActionController {
      * @access Public
      * @return Object ViewModel
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         $this->layout("layout/page_layout");
         $users = $this->_em->getRepository('Admin\Entity\Users')->findBy(array('role' => 2));
         return array('users' => $users);
@@ -164,7 +169,8 @@ class UsersController extends AbstractActionController {
      * @access Public
      * @return Redirect index action
      */
-    public function deleteAction() {
+    public function deleteAction()
+    {
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         $user = $this->_em->find('Admin\Entity\Users', $id);
         if ($user) {

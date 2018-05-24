@@ -18,10 +18,10 @@ use Zend\InputFilter\InputFilterInterface;
  *
  * @category Login
  * @package Model
- *         
- * @author Display Name <osscube(Kaushal Kishore)>
+ * 
  */
-class LoginValidation implements InputFilterAwareInterface {
+class LoginValidation implements InputFilterAwareInterface
+{
 
     /**
      *
@@ -38,7 +38,8 @@ class LoginValidation implements InputFilterAwareInterface {
      * @throws \Exception
      * @return void
      */
-    public function setInputFilter(InputFilterInterface $inputFilter) {
+    public function setInputFilter(InputFilterInterface $inputFilter)
+    {
         throw new \Exception("Not used $inputFilter");
     }
 
@@ -48,7 +49,8 @@ class LoginValidation implements InputFilterAwareInterface {
      *
      * @return object Zend\InputFilter\InputFilterAwareInterface
      */
-    public function getInputFilter() {
+    public function getInputFilter()
+    {
         if (!$this->_inputFilter) {
             $inputFilter = new InputFilter();
 
@@ -69,8 +71,8 @@ class LoginValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'Email can not be empty.'
-                                    )
+                                        $isEmpty => 'Email can not be empty.',
+                                    ),
                                 ),
                                 'break_chain_on_failure' => true
                             ),
@@ -78,20 +80,20 @@ class LoginValidation implements InputFilterAwareInterface {
                                 'name' => 'EmailAddress',
                                 'options' => array(
                                     'messages' => array(
-                                        $invalidEmail => 'Enter Valid Email Address.'
-                                    )
+                                        $invalidEmail => 'Enter Valid Email Address.',
+                                    ),
                                 ),
                                 'break_chain_on_failure' => true
-                            )
+                            ),
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
-                        )
+                                'name' => 'StringTrim',
+                            ),
+                        ),
             )));
 
             $inputFilter->add($factory->createInput(array(
@@ -102,20 +104,20 @@ class LoginValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'Password can not be empty.'
-                                    )
+                                        $isEmpty => 'Password can not be empty.',
+                                    ),
                                 ),
-                                'break_chain_on_failure' => true
-                            )
+                                'break_chain_on_failure' => true,
+                            ),
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
-                        )
+                                'name' => 'StringTrim',
+                            ),
+                        ),
             )));
 
 

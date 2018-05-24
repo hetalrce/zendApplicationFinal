@@ -10,24 +10,28 @@ use Zend\Db\Adapter\Adapter;
 use Zend\Session\Container;
 use Zend\Db\Sql\Update;
 
-class UserTable extends AbstractTableGateway {
+class UserTable extends AbstractTableGateway
+{
 
     protected $tableGateway;
     public $adapter;
     public $table = 'users';
 
-    public function __construct(TableGateway $tableGateway, Adapter $adapter) {
+    public function __construct(TableGateway $tableGateway, Adapter $adapter)
+    {
         $this->tableGateway = $tableGateway;
         $this->resultSetPrototype = new ResultSet(ResultSet::TYPE_ARRAY);
         $this->adapter = $adapter;
     }
 
-    public function fetchAll() {
+    public function fetchAll()
+    {
         $resultSet = $this->tableGateway->select();
         return $resultSet;
     }
 
-    public function saveUser(User $user) {
+    public function saveUser(User $user)
+    {
         $data = array(
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
@@ -37,14 +41,16 @@ class UserTable extends AbstractTableGateway {
         $this->tableGateway->insert($data);
     }
 
-    public function getUser($email, $password) {
-        $resultSet = $this->tableGateway->select(array('email' => $email, 'password' => $password));
+    public function getUser($email, $password)
+    {
+        $resultSet = $this->tableGateway->select(array('email' => $email, 'password' => $password,));
         if (!empty($resultSet->current())) {
             return $resultSet->current();
         }
     }
 
-    public function verifyEmailForgotPassword($emailData) {
+    public function verifyEmailForgotPassword($emailData)
+    {
         //echo '<pre>';
         //print_r($this->tableGateway->table);
         // exit;
@@ -91,7 +97,8 @@ class UserTable extends AbstractTableGateway {
      *            // Flag for paging
      * @return array
      */
-    public function getUsers($where = array(), $columns = array(), $orderBy = '', $paging = false) {
+    public function getUsers($where = array(), $columns = array(), $orderBy = '', $paging = false)
+    {
 
         try {
             $sql = new Sql($this->getAdapter());
@@ -137,7 +144,8 @@ class UserTable extends AbstractTableGateway {
      * @param array $userPasswordData            
      * @return boolean
      */
-    function changeUserPassword($userPasswordData) {
+    function changeUserPassword($userPasswordData)
+    {
 
         $sql = new Sql($this->getAdapter());
         try {
@@ -146,7 +154,7 @@ class UserTable extends AbstractTableGateway {
             $update->table($this->table);
 
             $data = array(
-                'password' => $new_password
+                'password' => $new_password,
             );
 
             $update->set($data);

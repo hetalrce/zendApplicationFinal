@@ -8,7 +8,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Admin\Controller\DashboardController;
 use Zend\Session\Container;
 
-class DashboardControllerFactory implements FactoryInterface {
+class DashboardControllerFactory implements FactoryInterface
+{
 
     /**
      * Create service
@@ -17,7 +18,8 @@ class DashboardControllerFactory implements FactoryInterface {
      *
      * @return mixed
      */
-    public function createService(ServiceLocatorInterface $serviceLocator) {
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
 
         $realServiceLocator = $serviceLocator->getServiceLocator();
 
@@ -28,7 +30,8 @@ class DashboardControllerFactory implements FactoryInterface {
         return new DashboardController($postService, $sessionConfig);
     }
 
-    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null) {
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null)
+    {
         
     }
 

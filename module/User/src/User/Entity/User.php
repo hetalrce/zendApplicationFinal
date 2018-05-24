@@ -16,7 +16,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @property int $role
  * @property int $id
  */
-class User {
+class User
+{
 
     protected $inputFilter;
 
@@ -58,7 +59,8 @@ class User {
      * @param string $property
      * @return mixed
      */
-    public function __get($property) {
+    public function __get($property)
+    {
         return $this->$property;
     }
 
@@ -68,7 +70,8 @@ class User {
      * @param string $property
      * @param mixed $value
      */
-    public function __set($property, $value) {
+    public function __set($property, $value)
+    {
         $this->$property = $value;
     }
 

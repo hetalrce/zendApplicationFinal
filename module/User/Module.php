@@ -10,9 +10,11 @@ use User\Service\User;
 use Zend\Authentication\Adapter\DbTable as DbTableAuthAdapter;
 use Zend\Authentication\AuthenticationService;
 
-class Module {
+class Module
+{
 
-    public function onBootstrap(MvcEvent $e) {
+    public function onBootstrap(MvcEvent $e)
+    {
 
         $eventManager = $e->getApplication()->getEventManager();
 
@@ -21,12 +23,14 @@ class Module {
         $moduleRouteListener->attach($eventManager);
     }
 
-    public function getConfig() {
+    public function getConfig()
+    {
 
         return include __DIR__ . '/config/module.config.php';
     }
 
-    public function getAutoloaderConfig() {
+    public function getAutoloaderConfig()
+    {
 
         return array(
             'Zend\Loader\StandardAutoloader' => array(
@@ -38,34 +42,28 @@ class Module {
     }
 
     // Automatically invoked by service manager
-    public function getServiceConfig() {
+    public function getServiceConfig()
+    {
         return array(
             'factories' => array(
-                'User\Model\UserTable' => function($sm) {
+                'User\Model\UserTable' => function($sm)
+                {
                     $tableGateway = $sm->get('UserTableGateway');
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $table = new UserTable($tableGateway, $dbAdapter);
                     return $table;
                 },
-                'User\Service\user' => function ($serviceManager) {
+                'User\Service\user' => function ($serviceManager)
+                {
                     return new User(null, $serviceManager);
                 },
-                'UserTableGateway' => function($sm) {
+                'UserTableGateway' => function($sm)
+                {
                     $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                     $resultSetPrototype = new ResultSet();
                     $resultSetPrototype->setArrayObjectPrototype(new User());
                     return new TableGateway('users', $dbAdapter, null, $resultSetPrototype);
                 },
-//                'AuthService' => function ($serviceManager) {
-//                    $dbAdapter = $serviceManager->get('Zend\Db\Adapter\Adapter');
-//                    $dbTableAuthAdapter = new DbTableAuthAdapter($dbAdapter, 'users', 'email', 'password');
-//
-//                    $authService = new AuthenticationService();
-//                    $authService->setAdapter($dbTableAuthAdapter);
-//                    $authService->setStorage($serviceManager->get('User\Model\AuthStoragez'));
-//
-//                    return $authService;
-//                }
             )
         );
     }

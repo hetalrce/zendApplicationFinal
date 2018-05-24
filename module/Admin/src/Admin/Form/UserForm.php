@@ -4,9 +4,11 @@ namespace Admin\Form;
 
 use Zend\Form\Form;
 
-class UserForm extends Form {
+class UserForm extends Form
+{
 
-    public function __construct($name = null) {
+    public function __construct($name = null)
+    {
 
         parent::__construct('user');
         // Setting post method for this form
@@ -16,8 +18,8 @@ class UserForm extends Form {
         $this->add(array(
             "name" => "id",
             "attributes" => array(
-                "type" => "hidden"
-            )
+                "type" => "hidden",
+            ),
         ));
 
         $this->add(array(
@@ -25,11 +27,11 @@ class UserForm extends Form {
             'attributes' => array(
                 'id' => 'first_name',
                 'type' => 'text',
-                'class' => 'input-txt form-control'
+                'class' => 'input-txt form-control',
             ),
             'options' => array(
-                'label' => 'First Name'
-            )
+                'label' => 'First Name',
+            ),
         ));
 
         $this->add(array(
@@ -37,11 +39,11 @@ class UserForm extends Form {
             'attributes' => array(
                 'id' => 'last_name',
                 'type' => 'text',
-                'class' => 'input-txt form-control'
+                'class' => 'input-txt form-control',
             ),
             'options' => array(
-                'label' => 'Last Name'
-            )
+                'label' => 'Last Name',
+            ),
         ));
 
         $this->add(array(
@@ -49,33 +51,33 @@ class UserForm extends Form {
             'attributes' => array(
                 'id' => 'email',
                 'type' => 'text',
-                'class' => 'input-txt form-control'
+                'class' => 'input-txt form-control',
             ),
             'options' => array(
-                'label' => 'Email'
-            )
+                'label' => 'Email',
+            ),
         ));
         $this->add(array(
             'name' => 'password',
             'attributes' => array(
                 'id' => 'password',
                 'type' => 'password',
-                'class' => 'input-txt form-control'
+                'class' => 'input-txt form-control',
             ),
             'options' => array(
-                'label' => 'Password'
-            )
+                'label' => 'Password',
+            ),
         ));
         $this->add(array(
             'name' => 'confirmpassword',
             'attributes' => array(
                 'id' => 'confirmpassword',
                 'type' => 'password',
-                'class' => 'input-txt form-control'
+                'class' => 'input-txt form-control',
             ),
             'options' => array(
-                'label' => 'Confirm Password'
-            )
+                'label' => 'Confirm Password',
+            ),
         ));
 
         $this->add(array(
@@ -84,8 +86,8 @@ class UserForm extends Form {
                 'type' => 'submit',
                 'value' => 'Submit',
                 'id' => 'submitbutton',
-                'class' => 'btn btn-default'
-            )
+                'class' => 'btn btn-default',
+            ),
         ));
     }
 

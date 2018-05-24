@@ -4,9 +4,11 @@ namespace User\Form;
 
 use Zend\Form\Form;
 
-class LoginForm extends Form {
+class LoginForm extends Form
+{
 
-    public function __construct($name = null) {
+    public function __construct($name = null)
+    {
         parent::__construct('login');
         // Setting post method for this form
         $this->setAttribute("method", "post");
@@ -15,11 +17,11 @@ class LoginForm extends Form {
             'attributes' => array(
                 'id' => 'email',
                 'type' => 'text',
-                'class' => 'input-txt'
+                'class' => 'input-txt',
             ),
             'options' => array(
-                'label' => 'Email Id'
-            )
+                'label' => 'Email Id',
+            ),
         ));
 
         $this->add(array(
@@ -27,11 +29,11 @@ class LoginForm extends Form {
             'attributes' => array(
                 'id' => 'password',
                 'type' => 'password',
-                'class' => 'input-txt'
+                'class' => 'input-txt',
             ),
             'options' => array(
-                'label' => 'Password'
-            )
+                'label' => 'Password',
+            ),
         ));
 
         $this->add(array(
@@ -39,11 +41,11 @@ class LoginForm extends Form {
             'attributes' => array(
                 'id' => 'rememberMe',
                 'value' => 1,
-                'type' => 'Checkbox'
+                'type' => 'Checkbox',
             ),
             'options' => array(
-                'label' => 'Remember me on this computer'
-            )
+                'label' => 'Remember me on this computer',
+            ),
         ));
 
 
@@ -53,8 +55,8 @@ class LoginForm extends Form {
                 'type' => 'submit',
                 'value' => 'Sign in',
                 'id' => 'submitbutton',
-                'class' => 'btn'
-            )
+                'class' => 'btn',
+            ),
         ));
 
         $this->add(array(
@@ -62,9 +64,9 @@ class LoginForm extends Form {
             'name' => 'loginCsrf',
             'options' => array(
                 'csrf_options' => array(
-                    'timeout' => 3600
-                )
-            )
+                    'timeout' => 3600,
+                ),
+            ),
         ));
     }
 

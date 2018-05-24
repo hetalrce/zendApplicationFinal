@@ -6,7 +6,8 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use User\Hydrator\Posts;
 
-class PostController extends AbstractActionController {
+class PostController extends AbstractActionController
+{
 
     /**
      *  @var DoctrineORMEntityManager
@@ -48,7 +49,8 @@ class PostController extends AbstractActionController {
      * @param $postFormValidationConfig Post Form Validation Class
      * @return Object
      */
-    public function __construct($serviceLocator = null, $sessionConfig = null, $postFormConfig = null, $postFormValidationConfig = null, $hydrator = null, $reflaction_object = null) {
+    public function __construct($serviceLocator = null, $sessionConfig = null, $postFormConfig = null, $postFormValidationConfig = null, $hydrator = null, $reflaction_object = null)
+    {
 
         if (!is_null($serviceLocator)) {
             $this->_em = $serviceLocator;
@@ -77,15 +79,13 @@ class PostController extends AbstractActionController {
      * @access Public
      * @return Object ViewModel
      */
-    public function indexAction() {
-
+    public function indexAction()
+    {
         $this->layout("layout/header");
-
         $userId = $this->_session->offsetGet('userId');
-
         $post = $this->_em->getRepository('User\Entity\Post')->findBy(
-                array('user_id' => $userId));
-        return array('post' => $post);
+                array('user_id' => $userId,));
+        return array('post' => $post,);
     }
 
     /**
@@ -95,7 +95,8 @@ class PostController extends AbstractActionController {
      * @access Public
      * @return Object ViewModel
      */
-    public function addAction() {
+    public function addAction()
+    {
         $request = $this->getRequest();
         $userId = $this->_session->offsetGet('userId');
         $errorList = [];
@@ -115,7 +116,7 @@ class PostController extends AbstractActionController {
                 $errorList = $this->_postForm->getMessages();
             }
         }
-        return array('postForm' => $this->_postForm, 'errorList' => $errorList);
+        return array('postForm' => $this->_postForm, 'errorList' => $errorList,);
     }
 
     /**
@@ -125,7 +126,8 @@ class PostController extends AbstractActionController {
      * @access Public
      * @return Object ViewModel
      */
-    public function updateAction() {
+    public function updateAction()
+    {
         $errorList = [];
         $id = (int) $this->params()->fromRoute('id', 0);
         try {
@@ -133,7 +135,7 @@ class PostController extends AbstractActionController {
                     array('id' => $id));
         } catch (\Exception $ex) {
             return $this->redirect()->toRoute('post', array(
-                        'action' => 'index'
+                        'action' => 'index',
             ));
         }
         $this->_postForm->get('submit')->setAttribute('value', 'Update');
@@ -163,7 +165,8 @@ class PostController extends AbstractActionController {
      * @access Public
      * @return Redirect index action
      */
-    public function deleteAction() {
+    public function deleteAction()
+    {
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         $post = $this->_em->find('User\Entity\Post', $id);
         if ($post) {

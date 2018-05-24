@@ -19,7 +19,7 @@ $session = new Container('User');
     </head>
     <body>
         <div class="container"> 
-            
+
             <a href="<?php
             if ($session->offsetGet('userId')) {
                 echo $this->serverUrl('/user/logout');

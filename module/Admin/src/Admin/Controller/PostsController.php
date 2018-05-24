@@ -6,7 +6,8 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use User\Hydrator\Posts;
 
-class PostsController extends AbstractActionController {
+class PostsController extends AbstractActionController
+{
 
     /**
      *  @var DoctrineORMEntityManager
@@ -48,7 +49,8 @@ class PostsController extends AbstractActionController {
      * @param $postFormValidationConfig Post Form Validation Class
      * @return Object
      */
-    public function __construct($serviceLocator = null, $sessionConfig = null, $hydrator = null, $reflaction_object = null, $PostsForm = null, $postValidation = null) {
+    public function __construct($serviceLocator = null, $sessionConfig = null, $hydrator = null, $reflaction_object = null, $PostsForm = null, $postValidation = null)
+    {
 
         if (!is_null($serviceLocator)) {
             $this->_em = $serviceLocator;
@@ -77,10 +79,11 @@ class PostsController extends AbstractActionController {
      * @access Public
      * @return Object ViewModel
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         $this->layout("layout/page_layout");
         $posts = $this->_em->getRepository('Admin\Entity\Posts')->findAll();
-        return array('post' => $posts);
+        return array('post' => $posts,);
     }
 
     /**
@@ -90,7 +93,8 @@ class PostsController extends AbstractActionController {
      * @access Public
      * @return Object ViewModel
      */
-    public function addAction() {
+    public function addAction()
+    {
         $errorList = [];
         $this->layout("layout/page_layout");
         $request = $this->getRequest();
@@ -109,7 +113,7 @@ class PostsController extends AbstractActionController {
                 $errorList = $this->_postForm->getMessages();
             }
         }
-        return array('postForm' => $this->_postForm, 'errorList' => $errorList);
+        return array('postForm' => $this->_postForm, 'errorList' => $errorList,);
     }
 
     /**
@@ -119,15 +123,16 @@ class PostsController extends AbstractActionController {
      * @access Public
      * @return Object ViewModel
      */
-    public function updateAction() {
+    public function updateAction()
+    {
         $errorList = [];
         $id = (int) $this->params()->fromRoute('id', 0);
         try {
             $post = $this->_em->getRepository('Admin\Entity\Posts')->findOneBy(
-                    array('id' => $id));
+                    array('id' => $id,));
         } catch (\Exception $ex) {
             return $this->redirect()->toRoute('posts', array(
-                        'action' => 'index'
+                        'action' => 'index',
             ));
         }
         $this->_postForm->get('submit')->setAttribute('value', 'Update');
@@ -156,7 +161,8 @@ class PostsController extends AbstractActionController {
      * @access Public
      * @return Redirect index action
      */
-    public function deleteAction() {
+    public function deleteAction()
+    {
         $id = (int) $this->getEvent()->getRouteMatch()->getParam('id');
         $post = $this->_em->find('Admin\Entity\Posts', $id);
         if ($post) {

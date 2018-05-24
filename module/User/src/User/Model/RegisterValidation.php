@@ -1,9 +1,8 @@
 <?php
 
 /**
- * LoginValidation class
+ * RegisterValidation class
  *
- * @author Display Name <osscube(Kaushal Kishore)>
  * Used to add validator on login form
  */
 
@@ -20,9 +19,9 @@ use Zend\InputFilter\InputFilterInterface;
  * @category Login
  * @package Model
  *         
- * @author Display Name <osscube(Kaushal Kishore)>
  */
-class RegisterValidation implements InputFilterAwareInterface {
+class RegisterValidation implements InputFilterAwareInterface
+{
 
     /**
      *
@@ -39,7 +38,8 @@ class RegisterValidation implements InputFilterAwareInterface {
      * @throws \Exception
      * @return void
      */
-    public function setInputFilter(InputFilterInterface $inputFilter) {
+    public function setInputFilter(InputFilterInterface $inputFilter)
+    {
         throw new \Exception("Not used $inputFilter");
     }
 
@@ -49,7 +49,8 @@ class RegisterValidation implements InputFilterAwareInterface {
      *
      * @return object Zend\InputFilter\InputFilterAwareInterface
      */
-    public function getInputFilter() {
+    public function getInputFilter()
+    {
         if (!$this->_inputFilter) {
             $inputFilter = new InputFilter();
 
@@ -69,20 +70,20 @@ class RegisterValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'First Name can not be empty.'
-                                    )
+                                        $isEmpty => 'First Name can not be empty.',
+                                    ),
                                 ),
-                                'break_chain_on_failure' => true
+                                'break_chain_on_failure' => true,
                             ),
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
-                        )
+                                'name' => 'StringTrim',
+                            ),
+                        ),
             )));
 
             $inputFilter->add($factory->createInput(array(
@@ -93,20 +94,20 @@ class RegisterValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'Last Name can not be empty.'
-                                    )
+                                        $isEmpty => 'Last Name can not be empty.',
+                                    ),
                                 ),
-                                'break_chain_on_failure' => true
+                                'break_chain_on_failure' => true,
                             ),
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
-                        )
+                                'name' => 'StringTrim',
+                            ),
+                        ),
             )));
 
             $inputFilter->add($factory->createInput(array(
@@ -117,29 +118,29 @@ class RegisterValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'Email can not be empty.'
-                                    )
+                                        $isEmpty => 'Email can not be empty.',
+                                    ),
                                 ),
-                                'break_chain_on_failure' => true
+                                'break_chain_on_failure' => true,
                             ),
                             array(
                                 'name' => 'EmailAddress',
                                 'options' => array(
                                     'messages' => array(
-                                        $invalidEmail => 'Enter Valid Email Address.'
-                                    )
+                                        $invalidEmail => 'Enter Valid Email Address.',
+                                    ),
                                 ),
-                                'break_chain_on_failure' => true
-                            )
+                                'break_chain_on_failure' => true,
+                            ),
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
-                        )
+                                'name' => 'StringTrim',
+                            ),
+                        ),
             )));
 
             $inputFilter->add($factory->createInput(array(
@@ -150,20 +151,20 @@ class RegisterValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'Password can not be empty.'
-                                    )
+                                        $isEmpty => 'Password can not be empty.',
+                                    ),
                                 ),
-                                'break_chain_on_failure' => true
-                            )
+                                'break_chain_on_failure' => true,
+                            ),
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
-                        )
+                                'name' => 'StringTrim',
+                            ),
+                        ),
             )));
             $inputFilter->add($factory->createInput(array(
                         'name' => 'confirmpassword',
@@ -173,20 +174,20 @@ class RegisterValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'Confirm Password can not be empty.'
-                                    )
+                                        $isEmpty => 'Confirm Password can not be empty.',
+                                    ),
                                 ),
-                                'break_chain_on_failure' => true
+                                'break_chain_on_failure' => true,
                             ),
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
-                        )
+                                'name' => 'StringTrim',
+                            ),
+                        ),
             )));
 
 

@@ -13,7 +13,8 @@ use ReflectionClass;
 use Zend\Hydrator\Reflection as ReflectionHydrator;
 use User\Entity\Post;
 
-class PostControllerFactory implements FactoryInterface {
+class PostControllerFactory implements FactoryInterface
+{
 
     /**
      * Create service
@@ -22,7 +23,8 @@ class PostControllerFactory implements FactoryInterface {
      *
      * @return mixed
      */
-    public function createService(ServiceLocatorInterface $serviceLocator) {
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
 
         $realServiceLocator = $serviceLocator->getServiceLocator();
         $postService = $realServiceLocator->get('doctrine.entitymanager.orm_default');
@@ -42,7 +44,8 @@ class PostControllerFactory implements FactoryInterface {
         return new PostController($postService, $sessionConfig, $postFormConfig, $postFormValidationConfig, $hydrator, $reflaction_object);
     }
 
-    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null) {
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null)
+    {
         
     }
 

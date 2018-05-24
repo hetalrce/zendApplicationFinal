@@ -5,7 +5,8 @@ namespace Admin\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class DashboardController extends AbstractActionController {
+class DashboardController extends AbstractActionController
+{
 
     /**
      *  @var DoctrineORMEntityManager
@@ -25,7 +26,7 @@ class DashboardController extends AbstractActionController {
      * @param $sessionConfig Session Data Class
      * @return Object
      */
-    public function __construct($serviceLocator = null, $sessionConfig = null) 
+    public function __construct($serviceLocator = null, $sessionConfig = null)
     {
         if (!is_null($serviceLocator)) {
             $this->_em = $serviceLocator;
@@ -42,12 +43,13 @@ class DashboardController extends AbstractActionController {
      * @access Public
      * @return Object ViewModel
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         $this->layout("layout/page_layout");
         $userDataCount = $this->_em->getRepository('Admin\Entity\Users')->findBy(array('role' => 2));
         $postDataCount = $this->_em->getRepository('Admin\Entity\Posts')->findAll();
 
-        return array('usersCount' => count($userDataCount), 'postsCount' => count($postDataCount));
+        return array('usersCount' => count($userDataCount), 'postsCount' => count($postDataCount),);
     }
 
     /**
@@ -57,7 +59,8 @@ class DashboardController extends AbstractActionController {
      * @access Public
      * @return redirect to login action
      */
-    public function logoutAction() {
+    public function logoutAction()
+    {
         $adminId = $this->_session->offsetGet('adminId');
         $sessionId = session_id();
         $this->_session->getManager()->destroy();

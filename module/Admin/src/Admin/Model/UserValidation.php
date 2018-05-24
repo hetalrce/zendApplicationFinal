@@ -20,7 +20,8 @@ use Zend\InputFilter\InputFilterInterface;
  * @package Model
  * 
  */
-class UserValidation implements InputFilterAwareInterface {
+class UserValidation implements InputFilterAwareInterface
+{
 
     /**
      *
@@ -37,7 +38,8 @@ class UserValidation implements InputFilterAwareInterface {
      * @throws \Exception
      * @return void
      */
-    public function setInputFilter(InputFilterInterface $inputFilter) {
+    public function setInputFilter(InputFilterInterface $inputFilter)
+    {
         throw new \Exception("Not used $inputFilter");
     }
 
@@ -47,7 +49,8 @@ class UserValidation implements InputFilterAwareInterface {
      *
      * @return object Zend\InputFilter\InputFilterAwareInterface
      */
-    public function getInputFilter() {
+    public function getInputFilter()
+    {
         if (!$this->_inputFilter) {
             $inputFilter = new InputFilter();
 
@@ -68,19 +71,19 @@ class UserValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'First Name can not be empty.'
+                                        $isEmpty => 'First Name can not be empty.',
                                     )
                                 ),
-                                'break_chain_on_failure' => true
+                                'break_chain_on_failure' => true,
                             )
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
+                                'name' => 'StringTrim',
+                            ),
                         )
             )));
 
@@ -92,19 +95,19 @@ class UserValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'Last Name can not be empty.'
+                                        $isEmpty => 'Last Name can not be empty.',
                                     )
                                 ),
-                                'break_chain_on_failure' => true
+                                'break_chain_on_failure' => true,
                             )
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
+                                'name' => 'StringTrim',
+                            ),
                         )
             )));
 
@@ -116,10 +119,10 @@ class UserValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'Email can not be empty.'
+                                        $isEmpty => 'Email can not be empty.',
                                     )
                                 ),
-                                'break_chain_on_failure' => true
+                                'break_chain_on_failure' => true,
                             ),
                             array(
                                 'name' => 'EmailAddress',
@@ -129,15 +132,15 @@ class UserValidation implements InputFilterAwareInterface {
                                     )
                                 ),
                                 'break_chain_on_failure' => true
-                            )
+                            ),
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
+                                'name' => 'StringTrim',
+                            ),
                         )
             )));
             $inputFilter->add($factory->createInput(array(
@@ -148,19 +151,19 @@ class UserValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'Password can not be empty.'
+                                        $isEmpty => 'Password can not be empty.',
                                     )
                                 ),
-                                'break_chain_on_failure' => true
+                                'break_chain_on_failure' => true,
                             )
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
+                                'name' => 'StringTrim',
+                            ),
                         )
             )));
             $inputFilter->add($factory->createInput(array(
@@ -171,10 +174,10 @@ class UserValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'Confirm password can not be empty.'
+                                        $isEmpty => 'Confirm password can not be empty.',
                                     )
                                 ),
-                                'break_chain_on_failure' => true
+                                'break_chain_on_failure' => true,
                             ),
                             array(
                                 'name' => 'Identical',
@@ -183,15 +186,15 @@ class UserValidation implements InputFilterAwareInterface {
                                     'message' => 'Password and confirm password must be same.',
                                 ),
                                 'break_chain_on_failure' => true
-                            )
+                            ),
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
+                                'name' => 'StringTrim',
+                            ),
                         )
             )));
 

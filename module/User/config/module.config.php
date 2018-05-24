@@ -43,12 +43,12 @@ return array(
                     'route' => '/post[/:action][/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id' => '[0-9]+'
+                        'id' => '[0-9]+',
                     ),
                     'defaults' => array(
                         'controller' => 'User\Controller\Post',
-                        'action' => 'index'
-                    )
+                        'action' => 'index',
+                    ),
                 ),
             ),
         ),
@@ -58,10 +58,6 @@ return array(
             'User\Controller\Post' => 'User\Factory\Controller\PostControllerFactory',
             'User\Controller\User' => 'User\Factory\Controller\UserControllerFactory',
         ),
-        'invokables' => array(
-        //  'User\Controller\User' => 'User\Controller\UserController',
-        //  'User\Controller\Post' => 'User\Controller\PostController',
-        )
     ),
     'view_manager' => array(
         'template_path_stack' => array(
@@ -74,13 +70,13 @@ return array(
             __NAMESPACE__ . '_driver' => array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
-                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity')
+                'paths' => array(__DIR__ . '/../src/' . __NAMESPACE__ . '/Entity'),
             ),
             'orm_default' => array(
                 'drivers' => array(
-                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
-                )
-            )
-        )
-    )
+                    __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver',
+                ),
+            ),
+        ),
+    ),
 );

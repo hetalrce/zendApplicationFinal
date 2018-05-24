@@ -4,9 +4,11 @@ namespace User\Form;
 
 use Zend\Form\Form;
 
-class PostForm extends Form {
+class PostForm extends Form
+{
 
-    public function __construct($name = null) {
+    public function __construct($name = null)
+    {
 
         parent::__construct('login');
         // Setting post method for this form
@@ -16,19 +18,19 @@ class PostForm extends Form {
         $this->add(array(
             "name" => "id",
             "attributes" => array(
-                "type" => "hidden"
-            )
+                "type" => "hidden",
+            ),
         ));
         $this->add(array(
             'name' => 'title',
             'attributes' => array(
                 'id' => 'title',
                 'type' => 'text',
-                'class' => 'input-txt'
+                'class' => 'input-txt',
             ),
             'options' => array(
-                'label' => 'Title'
-            )
+                'label' => 'Title',
+            ),
         ));
 
         $this->add(array(
@@ -37,11 +39,11 @@ class PostForm extends Form {
                 'id' => 'content',
                 'type' => 'textarea',
                 'class' => 'input-txt',
-                'rows' => 4
+                'rows' => 4,
             ),
             'options' => array(
-                'label' => 'Content'
-            )
+                'label' => 'Content',
+            ),
         ));
 
         $this->add(array(
@@ -50,8 +52,8 @@ class PostForm extends Form {
                 'type' => 'submit',
                 'value' => 'Submit',
                 'id' => 'submitbutton',
-                'class' => 'btn'
-            )
+                'class' => 'btn',
+            ),
         ));
     }
 

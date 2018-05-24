@@ -10,7 +10,8 @@ use Zend\Session\Container;
 use User\Form\LoginForm;
 use User\Model\LoginValidation;
 
-class UserControllerFactory implements FactoryInterface {
+class UserControllerFactory implements FactoryInterface
+{
 
     /**
      * Create service
@@ -19,7 +20,8 @@ class UserControllerFactory implements FactoryInterface {
      *
      * @return mixed
      */
-    public function createService(ServiceLocatorInterface $serviceLocator) {
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
 
         $realServiceLocator = $serviceLocator->getServiceLocator();
 
@@ -34,7 +36,8 @@ class UserControllerFactory implements FactoryInterface {
         return new UserController($postService, $sessionConfig, $loginFormConfig, $loginFormValidationConfig);
     }
 
-    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null) {
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null)
+    {
         
     }
 

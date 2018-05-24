@@ -5,7 +5,8 @@ namespace User\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class UserController extends AbstractActionController {
+class UserController extends AbstractActionController
+{
 
     /**
      *  @var DoctrineORMEntityManager
@@ -37,7 +38,8 @@ class UserController extends AbstractActionController {
      * @param $loginFormValidationConfig Login Form Validation Class
      * @return Object
      */
-    public function __construct($serviceLocator = null, $sessionConfig = null, $loginFormConfig = null, $loginFormValidationConfig = null) {
+    public function __construct($serviceLocator = null, $sessionConfig = null, $loginFormConfig = null, $loginFormValidationConfig = null)
+    {
 
         if (!is_null($serviceLocator)) {
             $this->_em = $serviceLocator;
@@ -60,7 +62,8 @@ class UserController extends AbstractActionController {
      * @access Public
      * @return Object ViewModel
      */
-    public function indexAction() {
+    public function indexAction()
+    {
         $request = $this->getRequest();
         $errorList = [];
         if ($request->isPost()) {
@@ -69,7 +72,7 @@ class UserController extends AbstractActionController {
             if ($this->_loginForm->isValid()) {
                 $data = $this->_loginForm->getData();
                 $userDetails = $this->_em->getRepository('User\Entity\User')->findOneBy(
-                        array('email' => $data['email'], 'password' => md5($data['password']))
+                        array('email' => $data['email'], 'password' => md5($data['password']),)
                 );
                 if (!empty($userDetails)) {
 
@@ -104,7 +107,8 @@ class UserController extends AbstractActionController {
      * @access Public
      * @return Object ViewModel
      */
-    public function logoutAction() {
+    public function logoutAction()
+    {
         $userId = $this->_session->offsetGet('userId');
         $sessionId = session_id();
         $this->_session->getManager()->destroy();

@@ -13,7 +13,8 @@ use ReflectionClass;
 use Zend\Hydrator\Reflection as ReflectionHydrator;
 use Admin\Entity\Users;
 
-class UsersControllerFactory implements FactoryInterface {
+class UsersControllerFactory implements FactoryInterface
+{
 
     /**
      * Create service
@@ -22,7 +23,8 @@ class UsersControllerFactory implements FactoryInterface {
      *
      * @return mixed
      */
-    public function createService(ServiceLocatorInterface $serviceLocator) {
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
 
         $realServiceLocator = $serviceLocator->getServiceLocator();
 
@@ -41,7 +43,8 @@ class UsersControllerFactory implements FactoryInterface {
         return new UsersController($postService, $sessionConfig, $userForm, $userValidation, $hydrator, $reflaction_object);
     }
 
-    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null) {
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null)
+    {
         
     }
 

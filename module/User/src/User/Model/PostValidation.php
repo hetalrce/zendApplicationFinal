@@ -19,9 +19,9 @@ use Zend\InputFilter\InputFilterInterface;
  * @category Login
  * @package Model
  *         
- * @author Display Name <osscube(Kaushal Kishore)>
  */
-class PostValidation implements InputFilterAwareInterface {
+class PostValidation implements InputFilterAwareInterface
+{
 
     /**
      *
@@ -38,7 +38,8 @@ class PostValidation implements InputFilterAwareInterface {
      * @throws \Exception
      * @return void
      */
-    public function setInputFilter(InputFilterInterface $inputFilter) {
+    public function setInputFilter(InputFilterInterface $inputFilter)
+    {
         throw new \Exception("Not used $inputFilter");
     }
 
@@ -48,7 +49,8 @@ class PostValidation implements InputFilterAwareInterface {
      *
      * @return object Zend\InputFilter\InputFilterAwareInterface
      */
-    public function getInputFilter() {
+    public function getInputFilter()
+    {
         if (!$this->_inputFilter) {
             $inputFilter = new InputFilter();
 
@@ -69,20 +71,20 @@ class PostValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'Title can not be empty.'
+                                        $isEmpty => 'Title can not be empty.',
                                     )
                                 ),
-                                'break_chain_on_failure' => true
-                            )
+                                'break_chain_on_failure' => true,
+                            ),
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
-                        )
+                                'name' => 'StringTrim',
+                            ),
+                        ),
             )));
             $inputFilter->add($factory->createInput(array(
                         'name' => 'content',
@@ -92,20 +94,20 @@ class PostValidation implements InputFilterAwareInterface {
                                 'name' => 'NotEmpty',
                                 'options' => array(
                                     'messages' => array(
-                                        $isEmpty => 'Content can not be empty.'
+                                        $isEmpty => 'Content can not be empty.',
                                     )
                                 ),
-                                'break_chain_on_failure' => true
-                            )
+                                'break_chain_on_failure' => true,
+                            ),
                         ),
                         'filters' => array(
                             array(
-                                'name' => 'StripTags'
+                                'name' => 'StripTags',
                             ),
                             array(
-                                'name' => 'StringTrim'
-                            )
-                        )
+                                'name' => 'StringTrim',
+                            ),
+                        ),
             )));
 
 

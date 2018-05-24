@@ -13,7 +13,8 @@ use Admin\Entity\Posts;
 use Admin\Form\PostsForm;
 use Admin\Model\PostsValidation;
 
-class PostsControllerFactory implements FactoryInterface {
+class PostsControllerFactory implements FactoryInterface
+{
 
     /**
      * Create service
@@ -22,7 +23,8 @@ class PostsControllerFactory implements FactoryInterface {
      *
      * @return mixed
      */
-    public function createService(ServiceLocatorInterface $serviceLocator) {
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
 
         $realServiceLocator = $serviceLocator->getServiceLocator();
         $postService = $realServiceLocator->get('doctrine.entitymanager.orm_default');
@@ -41,7 +43,8 @@ class PostsControllerFactory implements FactoryInterface {
         return new PostsController($postService, $sessionConfig, $hydrator, $reflaction_object, $PostsForm, $postValidation);
     }
 
-    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null) {
+    public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null)
+    {
         
     }
 

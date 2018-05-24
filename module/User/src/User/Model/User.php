@@ -2,7 +2,8 @@
 
 namespace User\Model;
 
-class User {
+class User
+{
 
     public $id;
     public $first_name;
@@ -10,7 +11,8 @@ class User {
     public $email;
     public $password;
 
-    public function exchangeArray($data) {
+    public function exchangeArray($data)
+    {
         $this->id = (isset($data['id'])) ? $data['id'] : null;
         $this->first_name = (isset($data['first_name'])) ? $data['first_name'] : null;
         $this->last_name = (isset($data['last_name'])) ? $data['last_name'] : null;

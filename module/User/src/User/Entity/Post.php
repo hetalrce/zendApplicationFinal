@@ -3,6 +3,7 @@
 namespace User\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 /**
  * A music Post.
  *
@@ -14,7 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @property date $created_on
  * @property int $id
  */
-class Post {
+class Post
+{
 
     protected $inputFilter;
 
@@ -51,7 +53,8 @@ class Post {
      * @param string $property
      * @return mixed
      */
-    public function __get($property) {
+    public function __get($property)
+    {
         return $this->$property;
     }
 
@@ -61,9 +64,9 @@ class Post {
      * @param string $property
      * @param mixed $value
      */
-    public function __set($property, $value) {
+    public function __set($property, $value)
+    {
         $this->$property = $value;
     }
 
-   
 }
