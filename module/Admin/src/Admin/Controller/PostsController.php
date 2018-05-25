@@ -103,9 +103,12 @@ class PostsController extends AbstractActionController
             $this->_postForm->setData($request->getPost());
             if ($this->_postForm->isValid()) {
                 $postData = $this->_postForm->getData();
+                $postData['user_id'] = $this->_session->offsetGet('adminId');
                 $data = $this->_hydrate->hydrate(
                         $postData, $this->_object
                 );
+
+
                 $this->_em->persist($data);
                 $this->_em->flush();
                 return $this->redirect()->toRoute('posts');
@@ -138,6 +141,7 @@ class PostsController extends AbstractActionController
         $this->_postForm->get('submit')->setAttribute('value', 'Update');
         $request = $this->getRequest();
         if ($request->isPost()) {
+            $post = (object) $request->getPost();
             $this->_postForm->setInputFilter($this->_postFormValidation->getInputFilter());
             $this->_postForm->setData($request->getPost());
             if ($this->_postForm->isValid()) {

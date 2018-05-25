@@ -2,6 +2,8 @@
 
 namespace Admin\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +30,13 @@ class Posts
     protected $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Users", fetch="EAGER")
+     * @var Collection
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $users;
+
+    /**
      * @ORM\Column(type="string")
      */
     protected $title;
@@ -38,14 +47,14 @@ class Posts
     protected $content;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    protected $created_on;
-
-    /**
      * @ORM\Column(type="integer")
      */
     protected $user_id;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $created_on;
 
     /**
      * Magic getter to expose protected properties.

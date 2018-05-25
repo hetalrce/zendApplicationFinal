@@ -78,7 +78,11 @@ class UsersController extends AbstractActionController
     public function indexAction()
     {
         $this->layout("layout/page_layout");
+
+        // $users = $this->_em->getRepository('Admin\Repository\UsersRepository');
+        //  exit;
         $users = $this->_em->getRepository('Admin\Entity\Users')->findBy(['role' => 2,]);
+        // $users = $this->_em->getRepository('Admin\Repository\UsersRepository')->findBy(['role' => 2,]);
         return ['users' => $users,];
     }
 
@@ -104,6 +108,7 @@ class UsersController extends AbstractActionController
                 $data = $this->_hydrate->hydrate(
                         $postData, $this->_object
                 );
+                
                 $this->_em->persist($data);
                 $this->_em->flush();
                 return $this->redirect()->toRoute('users');
@@ -123,6 +128,7 @@ class UsersController extends AbstractActionController
      */
     public function updateAction()
     {
+        $errorList = [];
         $this->layout("layout/page_layout");
 
         $id = (int) $this->params()->fromRoute('id', 0);
@@ -140,8 +146,8 @@ class UsersController extends AbstractActionController
 
         $request = $this->getRequest();
         if ($request->isPost()) {
-
-            $this->_userForm->setInputFilter($this->_userFormValidation->getInputFilter());
+            $user = (object) $request->getPost();
+            //  $this->_userForm->setInputFilter($this->_userFormValidation->getInputFilter());
 
             $this->_userForm->setData($request->getPost());
 
@@ -155,11 +161,10 @@ class UsersController extends AbstractActionController
                 return $this->redirect()->toRoute('users');
             } else {
                 $errorList = $this->_userForm->getMessages();
-                $this->flashMessenger()->addMessage($errorList);
             }
         }
 
-        return ['userForm' => $this->_userForm, 'user' => $user, 'id' => $id,];
+        return ['userForm' => $this->_userForm, 'user' => $user, 'id' => $id, 'errorList' => $errorList];
     }
 
     /**

@@ -16,26 +16,35 @@ $session = new Container('User');
                 $('.datatable').DataTable();
             });
         </script>
+
+        <style>
+            .lhead{
+                padding-top: 10px;padding-bottom: 10px;
+            }
+
+        </style>
     </head>
     <body>
         <div class="container"> 
 
-            <a href="<?php
-            if ($session->offsetGet('userId')) {
-                echo $this->serverUrl('/user/logout');
-            } else {
-                echo $this->serverUrl('/user');
-            }
-            ?>" class="btn btn-info btn-lg">
-                <span class="glyphicon glyphicon-log-out"></span>  
-                <?php
+            <div class="lhead">
+                <a  href="<?php
                 if ($session->offsetGet('userId')) {
-                    echo 'Logout';
+                    echo $this->serverUrl('/user/logout');
                 } else {
-                    echo 'Login';
+                    echo $this->serverUrl('/user');
                 }
-                ?>
-            </a>
+                ?>" class="btn btn-info btn-lg pull-right">
+                    <span class="glyphicon glyphicon-log-out"></span>  
+                    <?php
+                    if ($session->offsetGet('userId')) {
+                        echo 'Logout';
+                    } else {
+                        echo 'Login';
+                    }
+                    ?>
+                </a>
+            </div>
 
         </div>
 

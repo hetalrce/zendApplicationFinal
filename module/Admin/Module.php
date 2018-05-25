@@ -6,6 +6,7 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Db\TableGateway\TableGateway;
 use Zend\Db\ResultSet\ResultSet;
+use Admin\Repository\UsersRepository;
 
 class Module
 {
@@ -58,6 +59,7 @@ class Module
                     return new TableGateway('users', $dbAdapter, null, $resultSetPrototype);
                 }
             ],
+            'invokables' => ['Admin\Repository\UsersRepository' => UsersRepository::class],
         ];
     }
 

@@ -9,6 +9,15 @@ use User\Controller\UserController;
 use Zend\Session\Container;
 use User\Form\LoginForm;
 use User\Model\LoginValidation;
+use User\Form\RegisterForm;
+use User\Model\RegisterValidation;
+use ReflectionClass;
+use Zend\Hydrator\Reflection as ReflectionHydrator;
+use User\Entity\User;
+use User\Form\ForgotPasswordForm;
+use User\Form\ResetPasswordForm;
+use Zend\View\Renderer\PhpRenderer;
+use \Zend\View\Resolver\TemplateMapResolver;
 
 class UserControllerFactory implements FactoryInterface
 {
@@ -33,7 +42,28 @@ class UserControllerFactory implements FactoryInterface
 
         $loginFormValidationConfig = new LoginValidation();
 
-        return new UserController($postService, $sessionConfig, $loginFormConfig, $loginFormValidationConfig);
+
+        $registerForm = new RegisterForm();
+
+        $registerFormValidation = new RegisterValidation('registerValidation');
+
+        $hydrator = new ReflectionHydrator();
+
+        $reflaction_object = (new ReflectionClass(User::class))->newInstanceWithoutConstructor();
+
+
+        $forgotPasswordForm = new ForgotPasswordForm();
+
+
+        $resetPasswordForm = new ResetPasswordForm();
+
+        $phpRenderView = new PhpRenderer();
+
+        $resolver = new TemplateMapResolver();
+       
+        $viewModel = new \Zend\View\Model\ViewModel();
+ 
+        return new UserController($postService, $sessionConfig, $loginFormConfig, $loginFormValidationConfig, $registerForm, $registerFormValidation, $hydrator, $reflaction_object, $forgotPasswordForm, $resetPasswordForm, $phpRenderView, $resolver,$viewModel);
     }
 
     public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null)

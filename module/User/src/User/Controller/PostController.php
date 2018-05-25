@@ -141,6 +141,7 @@ class PostController extends AbstractActionController
         $this->_postForm->get('submit')->setAttribute('value', 'Update');
         $request = $this->getRequest();
         if ($request->isPost()) {
+            $post = (object) $request->getPost();
             $userId = $this->_session->offsetGet('userId');
             $this->_postForm->setInputFilter($this->_postFormValidation->getInputFilter());
             $this->_postForm->setData($request->getPost());

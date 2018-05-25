@@ -1,19 +1,16 @@
 <?php
-$form = $this->loginForm;
+$form = $this->registerForm;
 
-$form->setAttribute('action', $this->url('user', ['action' => 'index',]));
+$form->setAttribute('action', $this->url('user', ['action' => 'register',]));
 
 $form->prepare();
 
 echo $this->form()->openTag($form);
 
-echo $this->formElement($form->get('loginCsrf'));
-
 $errorMessage = $this->errorList;
+echo $this->formHidden($form->get('id'));
 ?>
-
-<h2 class="center-b">Login</h2>
-
+<h2 class="center-b">Registration</h2>
 <?php
 if (isset($errorMessage) && count($errorMessage)) :
     ?>
@@ -33,6 +30,30 @@ if (isset($errorMessage) && count($errorMessage)) :
 <?php endif; ?>
 
 <table align="center" cellpadding="5" >
+    <tr>
+        <td>
+            <?php
+            echo $this->formlabel($form->get('first_name'));
+            ?>
+        </td>
+        <td>
+            <?php
+            echo $this->formelement($form->get('first_name'));
+            ?>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <?php
+            echo $this->formlabel($form->get('last_name'));
+            ?>
+        </td>
+        <td>
+            <?php
+            echo $this->formelement($form->get('last_name'));
+            ?>
+        </td>
+    </tr>
     <tr>
         <td>
             <?php
@@ -57,7 +78,18 @@ if (isset($errorMessage) && count($errorMessage)) :
             ?>
         </td>
     </tr>
-
+    <tr>
+        <td>
+            <?php
+            echo $this->formlabel($form->get('confirmpassword'));
+            ?>
+        </td>
+        <td>
+            <?php
+            echo $this->formelement($form->get('confirmpassword'));
+            ?>
+        </td>
+    </tr>
     <tr>
         <td>&nbsp;</td>
         <td>
@@ -70,10 +102,6 @@ if (isset($errorMessage) && count($errorMessage)) :
 <?php
 echo $this->form()->closeTag();
 ?>
-
-<p class="center-b">
-    Not registered? <a href=<?php echo $this->serverUrl('/user/register') ?>> Create an account</a>
-</p>
-<p class="center-b">
-    <a href=<?php echo $this->serverUrl('/user/forgotPassword') ?>>   Forgot Password? </a>
+<p style="text-align: center;">
+    Do you have a account? <a href="<?php echo $this->serverUrl('/user') ?>"> Login</a>
 </p>

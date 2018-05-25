@@ -1,8 +1,9 @@
 <?php
 
 /**
- * RegisterValidation class
+ * LoginValidation class
  *
+ * @author Display Name <osscube(Kaushal Kishore)>
  * Used to add validator on login form
  */
 
@@ -19,6 +20,7 @@ use Zend\InputFilter\InputFilterInterface;
  * @category Login
  * @package Model
  *         
+ * @author Display Name <osscube(Kaushal Kishore)>
  */
 class RegisterValidation implements InputFilterAwareInterface
 {
@@ -71,10 +73,10 @@ class RegisterValidation implements InputFilterAwareInterface
                                 'options' => [
                                     'messages' => [
                                         $isEmpty => 'First Name can not be empty.',
-                                    ],
+                                    ]
                                 ],
                                 'break_chain_on_failure' => true,
-                            ],
+                            ]
                         ],
                         'filters' => [
                             [
@@ -83,7 +85,7 @@ class RegisterValidation implements InputFilterAwareInterface
                             [
                                 'name' => 'StringTrim',
                             ],
-                        ),
+                        ]
             ]));
 
             $inputFilter->add($factory->createInput([
@@ -95,10 +97,10 @@ class RegisterValidation implements InputFilterAwareInterface
                                 'options' => [
                                     'messages' => [
                                         $isEmpty => 'Last Name can not be empty.',
-                                    ],
+                                    ]
                                 ],
                                 'break_chain_on_failure' => true,
-                            ],
+                            ]
                         ],
                         'filters' => [
                             [
@@ -107,7 +109,7 @@ class RegisterValidation implements InputFilterAwareInterface
                             [
                                 'name' => 'StringTrim',
                             ],
-                        ],
+                        ]
             ]));
 
             $inputFilter->add($factory->createInput([
@@ -127,10 +129,10 @@ class RegisterValidation implements InputFilterAwareInterface
                                 'name' => 'EmailAddress',
                                 'options' => [
                                     'messages' => [
-                                        $invalidEmail => 'Enter Valid Email Address.',
+                                        $invalidEmail => 'Enter Valid Email Address.'
                                     ],
                                 ],
-                                'break_chain_on_failure' => true,
+                                'break_chain_on_failure' => true
                             ],
                         ],
                         'filters' => [
@@ -140,9 +142,8 @@ class RegisterValidation implements InputFilterAwareInterface
                             [
                                 'name' => 'StringTrim',
                             ],
-                        ],
+                        ]
             ]));
-
             $inputFilter->add($factory->createInput([
                         'name' => 'password',
                         'required' => true,
@@ -155,7 +156,7 @@ class RegisterValidation implements InputFilterAwareInterface
                                     ],
                                 ],
                                 'break_chain_on_failure' => true,
-                            ],
+                            ]
                         ],
                         'filters' => [
                             [
@@ -164,7 +165,7 @@ class RegisterValidation implements InputFilterAwareInterface
                             [
                                 'name' => 'StringTrim',
                             ],
-                        ],
+                        ]
             ]));
             $inputFilter->add($factory->createInput([
                         'name' => 'confirmpassword',
@@ -174,10 +175,18 @@ class RegisterValidation implements InputFilterAwareInterface
                                 'name' => 'NotEmpty',
                                 'options' => [
                                     'messages' => [
-                                        $isEmpty => 'Confirm Password can not be empty.',
-                                    ],
+                                        $isEmpty => 'Confirm password can not be empty.',
+                                    ]
                                 ],
                                 'break_chain_on_failure' => true,
+                            ],
+                            [
+                                'name' => 'Identical',
+                                'options' => [
+                                    'token' => 'password',
+                                    'message' => 'Password and confirm password must be same.',
+                                ],
+                                'break_chain_on_failure' => true
                             ],
                         ],
                         'filters' => [
@@ -187,9 +196,8 @@ class RegisterValidation implements InputFilterAwareInterface
                             [
                                 'name' => 'StringTrim',
                             ],
-                        ],
+                        ]
             ]));
-
 
             $this->_inputFilter = $inputFilter;
         }

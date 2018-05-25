@@ -12,6 +12,7 @@ use Admin\Model\UserValidation;
 use ReflectionClass;
 use Zend\Hydrator\Reflection as ReflectionHydrator;
 use Admin\Entity\Users;
+use Admin\Repository\UsersRepository;
 
 class UsersControllerFactory implements FactoryInterface
 {
@@ -28,8 +29,11 @@ class UsersControllerFactory implements FactoryInterface
 
         $realServiceLocator = $serviceLocator->getServiceLocator();
 
-        $postService = $realServiceLocator->get('doctrine.entitymanager.orm_default');
+        $serviceLocator = $realServiceLocator->get('doctrine.entitymanager.orm_default');
 
+
+//        var_dump($serviceLocator->getRepository('Admin\Repository\UsersRepository'));
+//        exit;
         $sessionConfig = new Container('User');
 
         $userForm = new UserForm();
@@ -40,7 +44,7 @@ class UsersControllerFactory implements FactoryInterface
 
         $reflaction_object = (new ReflectionClass(Users::class))->newInstanceWithoutConstructor();
 
-        return new UsersController($postService, $sessionConfig, $userForm, $userValidation, $hydrator, $reflaction_object);
+        return new UsersController($serviceLocator, $sessionConfig, $userForm, $userValidation, $hydrator, $reflaction_object);
     }
 
     public function __invoke(\Interop\Container\ContainerInterface $container, $requestedName, mixed $options = null)

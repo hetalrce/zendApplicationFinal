@@ -9,6 +9,8 @@ use Zend\Db\ResultSet\ResultSet;
 use User\Service\User;
 use Zend\Authentication\Adapter\DbTable as DbTableAuthAdapter;
 use Zend\Authentication\AuthenticationService;
+use User\Service\UserEncryption;
+use User\Service\UserMailServices;
 
 class Module
 {
@@ -56,6 +58,14 @@ class Module
                 'User\Service\user' => function ($serviceManager)
                 {
                     return new User(null, $serviceManager);
+                },
+                'User\Service\UserEncryption' => function ($serviceManager)
+                {
+                    return new UserEncryption(null, $serviceManager);
+                },
+                'User\Service\UserMailServices' => function ($serviceManager)
+                {
+                    return new UserMailServices($serviceManager);
                 },
                 'UserTableGateway' => function($sm)
                 {

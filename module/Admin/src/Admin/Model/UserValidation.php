@@ -14,7 +14,7 @@ use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface;
 
 /**
- * LoginValidation is used to add validator on login form
+ * UserFormValidation is used to add validator on login form
  *
  * @category Login
  * @package Model
@@ -51,6 +51,7 @@ class UserValidation implements InputFilterAwareInterface
      */
     public function getInputFilter()
     {
+
         if (!$this->_inputFilter) {
             $inputFilter = new InputFilter();
 
@@ -60,8 +61,6 @@ class UserValidation implements InputFilterAwareInterface
             $maxLength = \Zend\Validator\StringLength::TOO_LONG;
             $invalidEmail = \Zend\Validator\EmailAddress::INVALID_FORMAT;
             $regexNotMatched = \Zend\Validator\Regex::NOT_MATCH;
-
-
 
             $inputFilter->add($factory->createInput([
                         'name' => 'first_name',
@@ -202,6 +201,7 @@ class UserValidation implements InputFilterAwareInterface
 
             $this->_inputFilter = $inputFilter;
         }
+
 
         return $this->_inputFilter;
     }

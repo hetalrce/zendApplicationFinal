@@ -5,9 +5,9 @@ namespace Admin\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * A music User.
+ * A User.
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Admin\Repository\UsersRepository")
  * @ORM\Table(name="users")
  * @property string $first_name
  * @property string $last_name
@@ -59,6 +59,8 @@ class Users
      * @param string $property
      * @return mixed
      */
+    
+    
     public function __get($property)
     {
         return $this->$property;

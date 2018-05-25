@@ -21,9 +21,9 @@ return [
                 ],
             ],
             'user' => [
-                'type' => 'Literal',
+                'type' => 'segment',
                 'options' => [
-                    'route' => '/user',
+                    'route' => '/user/[:action]',
                     'defaults' => [
                         'controller' => User::class,
                         'action' => 'index',
@@ -32,7 +32,7 @@ return [
                 'may_terminate' => true,
                 'child_routes' => [
                     'default' => [
-                        'type' => 'Segment',
+                        'type' => 'wildcard',
                         'options' => [
                             'route' => '/[:action]',
                             'constraints' => [
